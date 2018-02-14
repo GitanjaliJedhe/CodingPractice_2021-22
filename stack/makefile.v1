@@ -1,0 +1,17 @@
+CXX=g++
+CXXFLAG=-g -I include/
+
+# program executable name
+PROG=test
+
+OBJECTS=bin/stack.o bin/test.o
+
+all: $(OBJECTS) 
+bin/stack.o: src/stack.cpp	
+	$(CXX) -c src/stack.cpp $(CXXFLAG)
+
+bin/test.o: src/test.cpp
+	$(CXX) src/test.cpp bin/stack.o $(CXXFLAG)
+
+clean:
+	rm -f bin/stack bin/*.o

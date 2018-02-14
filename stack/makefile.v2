@@ -1,0 +1,19 @@
+CC=g++
+CCFLAGS=-c -g -I include/
+LDFLAGS=
+INCPATH=./include
+OBJPATH=./bin
+SOURCES=stack.cpp test.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=test
+
+all: $(SOURCES) $(EXECUTABLE)
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) bin/$(OBJECTS) -o bin/$@
+
+.cpp.o:	
+	$(CC) $(CCFLAGS) src/$< -o bin/$@
+
+clean:
+	#rm -f bin/stack bin/*.o
+	rm -f src/$(EXECUTABLE) bin/*.o
