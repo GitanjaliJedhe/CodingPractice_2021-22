@@ -44,7 +44,8 @@ void postorder(tNode *root)
         }
 
         root = (tNode *)pop(&top);
-        if(root -> right != NULL && root -> right == (tNode *)top)
+        
+        if((top) && (root -> right) && (root->right==(top->data)))
         {
             pop(&top);
             push(&top, root);
