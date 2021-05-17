@@ -1,8 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <iterator>
+#include <experimental/iterator>
+#include <algorithm> //for_each
 
 using namespace std;
 
+// Overloading << operator
 template <typename T>
 ostream& operator <<(ostream &os, vector<T> &vec) {
 	for(auto elem : vec) {
@@ -11,6 +15,7 @@ ostream& operator <<(ostream &os, vector<T> &vec) {
 	return os;
 }
 
+// Custom separator
 template <typename T>
 void print_vector(vector<T> &vec, string sp = "") {
 	for(auto elem : vec) {
@@ -19,6 +24,7 @@ void print_vector(vector<T> &vec, string sp = "") {
 	cout<<endl;
 }
 
+// Using Indexing
 template <typename T>
 void display_vector(vector<T> &vec, string sp = "") {
 	for(int i = 0; i < vec.size(); i++) {
@@ -39,6 +45,27 @@ int main() {
 	print_vector(vecOfString, "|");
 
 	display_vector(vecOfString, ",");
+
+	// std::copy
+	copy(vecOfInt.begin(), 
+	     vecOfInt.end(),
+	     ostream_iterator<int>(std::cout, " "));
+
+	cout<<endl;
+
+	//C++17 experimental::make_ostream_joiner
+	copy(vecOfInt.begin(), 
+	     vecOfInt.end(),
+	     experimental::make_ostream_joiner(std::cout, "  "));
+
+	cout<<endl;
+
+	// Lambda Function
+	for_each(vecOfInt.begin(), 
+	         vecOfInt.end(),
+	         [](const auto &elem) {
+	    		cout<<elem<<", ";
+	    	});
 
 	return 0;
 }
