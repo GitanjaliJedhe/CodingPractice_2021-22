@@ -2,35 +2,41 @@
 
 using namespace std;
 
-class Complex
+class Distance
 {
 	private:
-		int real, img;
+		int feet, inch;
 	public:
-		Complex(int r = 0, int i = 0)
+		Distance(int f = 0, int i = 0)
 		{
-			real = r;
-			img = i;
+			feet = f;
+			inch = i;
 		}
 		
-		Complex operator +(Complex obj)
+		Distance operator +(Distance d2)
 		{
-			Complex res;
-			res.real = real + obj.real;
-			res.img = img + obj.img;
-			return res;
+			Distance d3;
+
+			d3.feet = this->feet + d2.feet;
+			d3.inch = this->inch + d2.inch;
+
+			return d3;
 		}
 		
-		void print()
+		void Display()
 		{
-			cout << real << " + i" <<img <<endl;
+			cout<<"Feet & Inches "<<feet<<"'"<<inch<<endl;
 		}	
 };
 
 int main()
 {
-	Complex c1(10, 5), c2(2, 4), c3;
-	c3 = c1 + c2;
-	c3.print();
+	Distance d1(8, 9), d2(10, 2), d3;
+	d3 = d1 + d2;
+	d3.Display();
 	exit(0);
 }
+
+/*Output:-)
+Feet & Inches 18'11
+*/
