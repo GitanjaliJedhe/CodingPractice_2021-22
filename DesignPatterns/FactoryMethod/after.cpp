@@ -1,4 +1,5 @@
 // A design with factory pattern
+// Create objects without exposing the creation logic to the client 
 
 #include <iostream>
 
